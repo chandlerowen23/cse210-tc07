@@ -3,6 +3,7 @@ from game import constants
 from game.score import Score
 from game.word import Word
 from game.speed import Speed
+from game.guess import Guess
 
 class Director:
     """A code template for a person who directs the game. The responsibility of 
@@ -32,6 +33,7 @@ class Director:
         self._output_service = output_service
         self._score = Score()
         self._speed = Speed()
+        self._guess = Guess()
         
     def start_game(self):
         """Starts the game loop to control the sequence of play.
@@ -53,7 +55,14 @@ class Director:
         Args:
             self (Director): An instance of Director.
         """
-        
+
+
+        #this code works but repeats, probably from the speed.py i have loops
+        guess = self._input_service.get_letter()
+        letters = ""
+        letters += guess
+        x = self._guess.get_guess(letters)
+
         
 
     def _do_updates(self):
@@ -78,8 +87,9 @@ class Director:
         self._output_service.clear_screen()
         self._output_service.draw_actor(self._word)
         self._output_service.draw_actor(self._score)
+        self._output_service.draw_actor(self._guess)
         #example
         #self._output_service.draw_actors(self._snake.get_all())
-        self._output_service.draw_actor(self._speed.get_all())
+        #self._output_service.draw_actor(self._speed.get_all())
         self._output_service.flush_buffer()
 
