@@ -53,8 +53,7 @@ class Director:
         Args:
             self (Director): An instance of Director.
         """
-        #direction = self._input_service.get_direction()
-        #self._snake.move_head(direction)
+        
         
 
     def _do_updates(self):
@@ -64,8 +63,6 @@ class Director:
         Args:
             self (Director): An instance of Director.
         """
-        #self._handle_body_collision()
-        #self._handle_food_collision()
 
         self._speed.always_five_words()
 
@@ -80,42 +77,9 @@ class Director:
         """
         self._output_service.clear_screen()
         self._output_service.draw_actor(self._word)
-        #self._output_service.draw_actors(self._snake.get_all())
         self._output_service.draw_actor(self._score)
+        #example
+        #self._output_service.draw_actors(self._snake.get_all())
+        self._output_service.draw_actor(self._speed.get_all())
         self._output_service.flush_buffer()
 
-    def _handle_body_collision(self):
-        """Handles collisions between the snake's head and body. Stops the game 
-        if there is one.
-
-        Args:
-            self (Director): An instance of Director.
-        
-        head = self._snake.get_head()
-        body = self._snake.get_body()
-        for segment in body:
-            if head.get_position().equals(segment.get_position()):
-                self._keep_playing = False
-                break
-        """
-
-    def _handle_food_collision(self):
-        """Handles collisions between the snake's head and the food. Grows the 
-        snake, updates the score and moves the food if there is one.
-
-        Args:
-            self (Director): An instance of Director.
-        """
-        #head = self._snake.get_head()
-        #if head.get_position().equals(self._food.get_position()):
-        
-        #size = self._snake.get_size()
-        #segments = self._snake.get_all()
-        #print('this is christ',segments,'---')
-        #points = self._food.get_points()
-
-        # if size is not 5:
-        # #for n in range(points):
-        #     self._snake.grow_tail()
-        #     #self._score.add_points(points)
-        #     self._food.reset() 

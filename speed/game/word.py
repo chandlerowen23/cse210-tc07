@@ -23,7 +23,6 @@ class Word(Actor):
         super().__init__()
         self._points = 0
         self.set_text("- Buffer: ")
-        self.get_text()
         self.reset()
     
     def get_points(self):
