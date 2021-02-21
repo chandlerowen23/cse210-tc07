@@ -79,10 +79,12 @@ class Director:
 
         self._speed.always_five_words()
         self._guess.reset()
+        #we are comparing strings to see how many were typed correctly but it doesnt seem to change.
         guess_list = self._guess.guess_list_check()
         pulled_list = self._speed.get_used()
-        self.correct += self.check_correct(guess_list, pulled_list)
+        self.check_correct(guess_list, pulled_list)
         size = self._speed.get_size()
+        self._score.add_points(self.correct * 10)
         #print(size)
         #segments = self._snake.get_all()
         #print('this is christ',segments,'---')
@@ -92,14 +94,12 @@ class Director:
             self._speed.get_five_words(self)
 
     def check_correct(self, guess, used):
-        count = 0
         for i in guess:
             for k in used:
                 if i == k:
                     used.pop(k)
                     guess.pop(i)
-                    count += 1
-        return count
+                    self._score.get_points(10)
 
 
     def _do_outputs(self):

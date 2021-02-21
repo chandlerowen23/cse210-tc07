@@ -45,7 +45,8 @@ class Guess(Actor):
             self (word): an instance of word.
         """
         if self._guess.find('*') != -1:
-            self._guess_list += self._guess
+            res_str = self._guess.replace('*', '') 
+            self._guess_list += res_str
             self._guess = ""
         position = Point(10, 20)
         self.set_position(position)
