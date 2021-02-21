@@ -34,6 +34,7 @@ class Director:
         self._score = Score()
         self._speed = Speed()
         self._guess = Guess()
+        self.correct = 0
         
     def start_game(self):
         """Starts the game loop to control the sequence of play.
@@ -55,13 +56,13 @@ class Director:
         Args:
             self (Director): An instance of Director.
         """
-
-
-        #this code works but repeats, probably from the speed.py i have loops
+        # TODO: this code works but repeats, probably from the speed.py i have loops
         guess = self._input_service.get_letter()
         letters = ""
         letters += guess
         x = self._guess.get_guess(letters)
+        
+        
 
         
 
@@ -74,7 +75,23 @@ class Director:
         """
 
         self._speed.always_five_words()
+        self._guess.reset()
+        guess_list = self._guess.guess_list_check()
+        pulled_list = self._speed.get_used()
+        self.correct += self.check_correct(guess_list, pulled_list)
 
+        
+                    
+    def check_correct(self, guess, used):
+        count = 0
+        for i in guess:
+            for k in used:
+                if i == k:
+                    correct_list.append(i)
+                    pulled_list.pop(k)
+                    guess_list.pop(i)
+                    count += 1
+        return count
         
     def _do_outputs(self):
         """Outputs the important game information for each round of play. In 
@@ -90,6 +107,9 @@ class Director:
         self._output_service.draw_actor(self._guess)
         #example
         #self._output_service.draw_actors(self._snake.get_all())
+
         #self._output_service.draw_actor(self._speed.get_all())
+        
         self._output_service.flush_buffer()
+
 

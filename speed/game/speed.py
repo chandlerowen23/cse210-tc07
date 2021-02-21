@@ -5,7 +5,7 @@ from game import constants
 from game.actor import Actor
 from game.point import Point
 
-class Speed(Actor):
+class Speed():
     """A limbless reptile. The responsibility of speed is keep track of its segments. It contains methods for moving and growing among others.
 
     Stereotype:
@@ -22,9 +22,13 @@ class Speed(Actor):
         """
         super().__init__()
         self._word_list = []
+        self.all_used = []
 
     def get_all(self):
         return self._word_list
+
+    def get_used(self):
+        return self.all_used
     
     def get_all_words(self):
         PATH = os.path.dirname(os.path.abspath(__file__))
@@ -36,6 +40,8 @@ class Speed(Actor):
         list_words = self.get_all_words()
         for i in range(5):
             rand = random.choice(list_words)
+            self._word_list.append(rand)
+            self.all_used.append(rand)
             text = rand
             position = Point(30, 20)
             velocity = Point(random.randint(-1,1), random.randint(-1,1))
@@ -46,6 +52,8 @@ class Speed(Actor):
         list_words = self.get_all_words()
         if len(self._word_list) < 5:
             rand = random.choice(list_words)
+            self._word_list.append(rand)
+            self.all_used.append(rand)
             text = rand
             position = Point(30, 20)
             velocity = Point(random.randint(0,1), random.randint(0,1))
@@ -62,7 +70,7 @@ class Speed(Actor):
             velocity (Point): The segment's velocity.
         """
         segment = Actor()
-        segment.set_text(str(text))
+        segment.set_text(text)
         segment.set_position(position)
         segment.set_velocity(velocity)
         self._word_list.append(segment)

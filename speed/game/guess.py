@@ -23,6 +23,7 @@ class Guess(Actor):
         super().__init__()
         self._guess = ""
         self.reset()
+        self._guess_list = []
     
     def get_guess(self, guess):
         """Gets the points this word is worth.
@@ -44,6 +45,13 @@ class Guess(Actor):
             self (word): an instance of word.
         """
         
+        if self._guess.find('*') != -1:
+            self._guess_list += self._guess
+            self._guess = ""
         position = Point(10, 20)
         self.set_position(position)
+
+    def guess_list_check(self):
+        return self._guess_list
+
         
