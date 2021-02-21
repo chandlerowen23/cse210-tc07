@@ -87,9 +87,8 @@ class Director:
         for i in guess:
             for k in used:
                 if i == k:
-                    correct_list.append(i)
-                    pulled_list.pop(k)
-                    guess_list.pop(i)
+                    used.pop(k)
+                    guess.pop(i)
                     count += 1
         return count
         
